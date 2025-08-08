@@ -1,6 +1,9 @@
 import streamlit as st 
 import pandas as pd
 import requests
-import data.py as data
+from streamlit_app import data
+from streamlit_app import home
+from streamlit_app import stats
+from streamlit_app import graphs
 
-data.API_call
+data.API_call()
