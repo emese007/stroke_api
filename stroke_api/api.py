@@ -1,8 +1,14 @@
 from fastapi import APIRouter
 from stroke_api import filters
-from stroke_api.filters import filter_patient
+from enum import Enum
 
 router = APIRouter()
+
+class StatsName(str, Enum):
+    number_stat = "nombre"
+    age_moyen_stat = "age moyen"
+    taux_avc_stat = "taux d'avc"
+    all = "All"
 
 @router.get("/")
 def read_root():
@@ -10,19 +16,16 @@ def read_root():
 
 @router.get("/patients/")
 def get_patients(gender: str = None, stroke: int = None, max_age: float = None):
-    result = filters.filter_patient(gender, stroke, max_age)
-    return result
+    filtered_df = filters.filter_patient(gender, stroke, max_age)
+    return filtered_df
 
-# TODO décommenter et compléter
 @router.get("/patients/{patient_id}")
-def get_patients_by_id(patient_id: int = None):
-    result = filters.get_patients_by_id(patient_id)
-    return result
-    # Gérer le cas où l'id de patient passé en paramètre n'existe pas
-    if patient_id.empty:
-        
-        raise HTTPException(404,"Patient ID not found")
-        else:
-        return patient.to_dict('records')
+def get_patients_id(patient_id:int):
+    get_patient = filters.filter_id(patient_id)
+    return get_patient
 
-# TODO Ajout de la route stats
+
+@router.get("/stats/{type}")
+def get_stats(type: StatsName = None):
+    result = filters.stats(type)
+    return result
