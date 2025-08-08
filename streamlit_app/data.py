@@ -2,8 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 
-def API_call():
-    data = requests.get("http://127.0.0.1:8000/patients/").json()
+def API_call(url, params):
+    data = requests.get(url, params).json()
 
-    st.write(data)
-
+    return st.write(data)
