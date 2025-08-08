@@ -16,7 +16,7 @@ from enum import Enum
 
 # Ajouter les fonctions de filtrage pour les autres routes.
 
-stroke_data_df = pd.read_parquet("../stroke-api/data/healthcare-dataset-stroke-data-clean.parquet")
+stroke_data_df = pd.read_parquet("../stroke_api/data/healthcare-dataset-stroke-data-clean.parquet")
 
 class StatsName(str, Enum):
     number_stat = "nombre"
