@@ -1,4 +1,6 @@
 import streamlit as st 
+import pandas as pd
+import requests
+import data.py as data
 
-
-st.write("Hello world")
+data.API_call
