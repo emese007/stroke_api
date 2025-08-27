@@ -57,10 +57,10 @@ def stats(type: StatsName = None):
     avc_moyen = df["stroke"].mean()
     
     if type == StatsName.number_stat:
-        return {f"{round(nb_patient)} patients"}
+        return {round(nb_patient)}
     elif type == StatsName.age_moyen_stat:
-        return {f"{round(age_moyen)} ans en moyenne"}
+        return {f"{round(age_moyen)} ans"}
     elif type == StatsName.taux_avc_stat:
-        return {f"{avc_moyen}% taux d'avc"}
+        return {f"{round(avc_moyen, 2)}%"}
     elif type == StatsName.all:
         return {f"{round(nb_patient)} patients, ", f"{round(age_moyen)} ans en moyenne, ", f"{avc_moyen}% taux d'avc"}
